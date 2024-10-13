@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website dengan 7 Button</title>
+    <title>Website dengan Tombol Bergambar</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: flex;
+            align-items: center;
+            border: none;
+            background-color: #ffffff;
+            padding: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+            text-decoration: none; /* Menghapus garis bawah */
+            color: black; /* Mengatur warna teks */
+            margin: 10px 0; /* Spasi antara tombol */
+        }
+        .button img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://drive.google.com/drive/folders/1W7mK7KCopNWuTNgibUuMMznxNvmK88gR" alt="Foto Profil" class="profile-img">
-        <button class="button">
-            <img src="https://media-upload.net/uploads/C468zFvkTxEG.jpg" alt="Gambar 1">
-            INTRO AND LOGO
-        </button>
-        <button class="button">
-            <img src="https://via.placeholder.com/100" alt="Gambar 2">
-            Button 2
-        </button>
-        <button class="button">
-            <img src="https://via.placeholder.com/100" alt="Gambar 3">
-            Button 3
-        </button>
-        <button class="button">
-            <img src="https://via.placeholder.com/100" alt="Gambar 4">
-            Button 4
-        </button>
-        <button class="button">
-            <img src="https://via.placeholder.com/100" alt="Gambar 5">
-            Button 5
-        </button>
-        <button class="button">
-            <img src="https://via.placeholder.com/100" alt="Gambar 6">
-            Button 6
-        </button>
-        <button class="button">
-            <img src="https://via.placeholder.com/100" alt="Gambar 7">
-            Button 7
-        </button>
+        <img src="https://media-upload.net/uploads/C468zFvkTxEG.jpg" alt="Foto Profil" class="profile-img">
+        
+        <a href="https://drive.google.com/drive/folders/1W7mK7KCopNWuTNgibUuMMznxNvmK88gR" class="button">
+            <img src="https://media-upload.net/uploads/C468zFvkTxEG.jpg" alt="Tombol 1">
+            Akses Folder
+        </a>
+        <a href="https://drive.google.com/drive/folders/1W7mK7KCopNWuTNgibUuMMznxNvmK88gR" class="button">
+            <img src="https://media-upload.net/uploads/C468zFvkTxEG.jpg" alt="Tombol 2">
+            Akses Folder
+        </a>
+        <a href="https://drive.google.com/drive/folders/1W7mK7KCopNWuTNgibUuMMznxNvmK88gR" class="button">
+            <img src="https://media-upload.net/uploads/C468zFvkTxEG.jpg" alt="Tombol 3">
+            Akses Folder
+        </a>
+        <!-- Tambahkan tombol lainnya sesuai kebutuhan -->
     </div>
 </body>
 </html>
