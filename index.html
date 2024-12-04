@@ -24,6 +24,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
+            z-index: 1; /* Di bawah overlay */
         }
         .profile-img {
             width: 150px;
@@ -78,8 +79,17 @@
             0% { transform: translate(100%, 0); }
             100% { transform: translate(-100%, 0); }
         }
-        .popup {
+        .popup-overlay {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Latar belakang gelap */
+            z-index: 1000; /* Di atas konten lain */
+        }
+        .popup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -89,16 +99,18 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
-            z-index: 1000;
+            z-index: 1100; /* Di atas overlay */
         }
-        .popup.active {
-            display: block;
+        .popup p {
+            margin: 0;
         }
     </style>
 </head>
 <body>
-    <div id="popup" class="popup">
-        <p>Website ini telah dikunci oleh founder kami dengan alasan keamanan.</p>
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup">
+            <p>Website ini telah dikunci oleh founder kami dengan alasan keamanan.</p>
+        </div>
     </div>
     <div class="container">
         <h1>UNEKO FAMILY</h1>
@@ -129,7 +141,7 @@
     <script>
         const isLocked = true; // Ubah ke false untuk menonaktifkan popup
         if (isLocked) {
-            document.getElementById('popup').classList.add('active');
+            document.getElementById('popup-overlay').style.display = 'block';
         }
     </script>
 </body>
