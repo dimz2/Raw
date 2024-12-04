@@ -12,16 +12,16 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://media-upload.net/uploads/mSnfH7lvD0BF.jpg'); /* Gambar latar belakang */
-            background-size: cover; /* Menutupi seluruh latar belakang */
-            background-position: center; /* Memusatkan gambar */
-            position: relative; /* Untuk posisi absolut di dalamnya */
+            background-image: url('https://media-upload.net/uploads/mSnfH7lvD0BF.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Tambahkan latar belakang putih semi-transparan */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
         }
@@ -39,9 +39,9 @@
             padding: 10px;
             cursor: pointer;
             transition: box-shadow 0.3s;
-            text-decoration: none; /* Menghapus garis bawah */
-            color: black; /* Mengatur warna teks */
-            margin: 10px 0; /* Spasi antara tombol */
+            text-decoration: none;
+            color: black;
+            margin: 10px 0;
         }
         .button img {
             width: 50px;
@@ -52,37 +52,56 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .copyright {
-            position: absolute; /* Posisi absolut untuk menempatkan di sudut */
-            bottom: 10px; /* Jarak dari bawah */
-            right: 20px; /* Jarak dari kanan */
-            color: white; /* Warna teks */
-            font-size: 14px; /* Ukuran font */
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            color: white;
+            font-size: 14px;
         }
         h1 {
-            margin-bottom: 10px; /* Spasi antara judul dan gambar profil */
-            color: #333; /* Warna teks judul */
+            margin-bottom: 10px;
+            color: #333;
         }
         .marquee {
-            overflow: hidden; /* Menyembunyikan bagian yang keluar */
-            white-space: nowrap; /* Membuat teks tetap dalam satu baris */
-            box-sizing: border-box; /* Menyertakan padding dan border dalam ukuran */
-            width: 100%; /* Lebar penuh */
-            margin-bottom: 20px; /* Spasi di bawah teks berjalan */
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            width: 100%;
+            margin-bottom: 20px;
         }
         .marquee p {
-            display: inline-block; /* Mengizinkan animasi */
-            animation: marquee 10s linear infinite; /* Animasi berjalan */
-            color: #555; /* Warna teks */
+            display: inline-block;
+            animation: marquee 10s linear infinite;
+            color: #555;
         }
         @keyframes marquee {
             0% { transform: translate(100%, 0); }
             100% { transform: translate(-100%, 0); }
         }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+        .popup.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <div id="popup" class="popup">
+        <p>Website ini telah dikunci oleh founder kami dengan alasan keamanan.</p>
+    </div>
     <div class="container">
-        <h1>UNEKO FAMILY</h1> <!-- Tambahkan judul di sini -->
+        <h1>UNEKO FAMILY</h1>
         <div class="marquee">
             <p>Powered by Dimz, bla bla bla...</p>
         </div>
@@ -104,8 +123,14 @@
             <img src="https://media-upload.net/uploads/Aaf7LgJM_bkO.jpg" alt="Tombol 4">
             ALL MENTAHAN CANDY
         </a>
-        <!-- Tambahkan tombol lainnya sesuai kebutuhan -->
     </div>
     <div class="copyright">Copyright © Uneko Family</div>
+
+    <script>
+        const isLocked = true; // Ubah ke false untuk menonaktifkan popup
+        if (isLocked) {
+            document.getElementById('popup').classList.add('active');
+        }
+    </script>
 </body>
 </html>
