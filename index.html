@@ -1,199 +1,185 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property unf</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-image: url('https://files.catbox.moe/1jwl75.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 1;
-        }
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: flex;
-            align-items: center;
-            border: none;
-            background-color: #ffffff;
-            padding: 10px;
-            cursor: pointer;
-            transition: box-shadow 0.3s;
-            text-decoration: none;
-            color: black;
-            margin: 10px 0;
-        }
-        .button img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-        }
-        .button:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .copyright {
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-            color: white;
-            font-size: 14px;
-        }
-        h1 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .marquee {
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .marquee p {
-            display: inline-block;
-            animation: marquee 10s linear infinite;
-            color: #555;
-        }
-        @keyframes marquee {
-            0% { transform: translate(100%, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 1100;
-        }
-        .popup p {
-            margin: 0;
-        }
-        .popup button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .popup button:hover {
-            background-color: #555;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Property unf</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('https://files.catbox.moe/1jwl75.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      font-family: sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1;
+    }
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      border: none;
+      background-color: #ffffff;
+      padding: 10px;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+      text-decoration: none;
+      color: black;
+      margin: 10px 0;
+    }
+    .button img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .button:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .copyright {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      color: white;
+      font-size: 14px;
+    }
+    .popup-overlay, #warning-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1100;
+    }
+    .popup button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .popup button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
 <body>
-    <!-- Peringatan awal -->
-    <div class="popup-overlay" id="warning-overlay">
-        <div class="popup">
-            <p><strong>WEBSITE INI TELAH DI TAMBAHKAN SECURITY, JADI KAMU TIDAK AKAN MENYEBARKAN PROPERTY INI!</strong></p>
-            <br>
-            <button onclick="closeWarning()">Saya mengerti</button>
-        </div>
+  <div class="popup-overlay" id="warning-overlay">
+    <div class="popup">
+      <p><strong>WEBSITE INI TELAH DI TAMBAHKAN SECURITY, JADI KAMU TIDAK AKAN MENYEBARKAN PROPERTY INI!</strong></p>
+      <br />
+      <button onclick="closeWarning()">Saya mengerti</button>
     </div>
+  </div>
 
-    <!-- Overlay keamanan -->
-    <div class="popup-overlay" id="popup-overlay">
-        <div class="popup">
-            <p>このウェブサイトはセキュリティ上の理由から創設者によってロックされています / Website ini telah dikunci oleh founder kami dengan alasan keamanan.</p>
-        </div>
-    </div>
+  <div class="container">
+    <h1>UNEKO FAMILY</h1>
+    <img src="https://files.catbox.moe/k94ycx.jpg" alt="Foto Profil" class="profile-img" />
 
-    <div class="container">
-        <h1>UNEKO FAMILY</h1>
-        <div class="marquee">
-            <p>Powered by Dimz, bla bla bla...</p>
-        </div>
-        <img src="https://files.catbox.moe/k94ycx.jpg" alt="Foto Profil" class="profile-img">
-        
-        <a href="https://drive.google.com/drive/folders/1W7mK7KCopNWuTNgibUuMMznxNvmK88gR" class="button">
-            <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 1">
-            MENTAHAN CHARACTER
-        </a>
-        <a href="https://web-unf-intro.vercel.app/login" class="button">
-            <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 2">
-            INTRO AND LOGO
-        </a>
-        <a href="#" class="button" id="overlay-button">
-            <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 3">
-            MENTAHAN Overlay
-        </a>
-        <a href="https://drive.google.com/drive/folders/1TYcsaSKioaLP1hntBbMiauVxGZLyddmR" class="button">
-            <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 4">
-            ALL MENTAHAN CANDY
-        </a>
-    </div>
-    <div class="copyright">Copyright © Uneko Family</div>
+    <a href="#" class="button" data-url="https://drive.google.com/drive/folders/1W7mK7KCopNWuTNgibUuMMznxNvmK88gR">
+      <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 1" />
+      MENTAHAN CHARACTER
+    </a>
+    <a href="#" class="button" data-url="https://web-unf-intro.vercel.app/login">
+      <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 2" />
+      INTRO AND LOGO
+    </a>
+    <a href="#" class="button" data-url="https://drive.google.com/drive/folders/1Dzv7NWl9_LztLMmlCpvCbKNSCRU2K8vy">
+      <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 3" />
+      MENTAHAN Overlay
+    </a>
+    <a href="#" class="button" data-url="https://drive.google.com/drive/folders/1TYcsaSKioaLP1hntBbMiauVxGZLyddmR">
+      <img src="https://files.catbox.moe/g8qbzt.jpg" alt="Tombol 4" />
+      ALL MENTAHAN CANDY
+    </a>
+  </div>
+  <div class="copyright">Copyright © Uneko Family</div>
 
-    <script>
-        const isLocked = false;
-        if (isLocked) {
-            document.getElementById('popup-overlay').style.display = 'block';
-        }
+  <script>
+    function closeWarning() {
+      document.getElementById("warning-overlay").style.display = "none";
+    }
 
-        function closeWarning() {
-            document.getElementById('warning-overlay').style.display = 'none';
-        }
+    window.onload = function () {
+      document.getElementById("warning-overlay").style.display = "block";
+    };
 
-        window.onload = function() {
-            document.getElementById('warning-overlay').style.display = 'block';
-        };
+    const buttons = document.querySelectorAll(".button");
+    const cooldownKey = "verifyCooldown";
+    const cooldownTime = 3 * 60 * 60 * 1000; // 3 jam
+    const now = Date.now();
+    const lastFail = localStorage.getItem(cooldownKey);
 
-        const overlayBtn = document.getElementById('overlay-button');
-        overlayBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            const cooldownKey = 'overlayCooldown';
-            const cooldownTime = 60 * 60 * 1000; // 1 jam dalam ms
-            const lastClick = localStorage.getItem(cooldownKey);
-            const now = Date.now();
+    function disableButtons() {
+      buttons.forEach(btn => {
+        btn.setAttribute("disabled", "true");
+        btn.addEventListener("click", e => e.preventDefault());
+      });
+    }
 
-            if (lastClick && now - lastClick < cooldownTime) {
-                alert('Tombol ini sedang cooldown. Silakan coba lagi nanti.');
-                return;
-            }
+    if (lastFail && now - lastFail < cooldownTime) {
+      alert("Akses sedang diblokir karena verifikasi sebelumnya gagal. Coba lagi nanti.");
+      disableButtons();
+    } else {
+      buttons.forEach(btn => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          const randomCode = Math.floor(100000 + Math.random() * 900000).toString();
+          const userInput = prompt("Kode Verifikasi Anda: " + randomCode + "\nMasukkan kode ini untuk melanjutkan:");
 
-            const confirmClick = confirm('Jika kamu memencet tombol ini akan ada cooldown 1 jam. Lanjutkan?');
-            if (confirmClick) {
-                localStorage.setItem(cooldownKey, now.toString());
-                window.location.href = 'https://drive.google.com/drive/folders/1Dzv7NWl9_LztLMmlCpvCbKNSCRU2K8vy';
-            }
+          if (userInput === null || userInput.trim() === "") {
+            // Cancel atau kosong, tidak dihukum
+            return;
+          }
+
+          if (userInput === randomCode) {
+            window.location.href = btn.getAttribute("data-url");
+          } else {
+            alert("Kode salah. Akses diblokir selama 3 jam.");
+            localStorage.setItem(cooldownKey, Date.now().toString());
+            disableButtons();
+          }
         });
-    </script>
+      });
+    }
+  </script>
 </body>
 </html>
